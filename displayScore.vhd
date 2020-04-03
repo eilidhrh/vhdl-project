@@ -17,8 +17,6 @@
 -- Additional Comments:
 -- 
 ----------------------------------------------------------------------------------
-
-
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
@@ -42,6 +40,12 @@ end displayScore;
 architecture V1 of displayScore is
 
 signal activate_counter : unsigned(1 downto 0) := "00";
+signal integer1 : integer := 0;
+signal integer2 : integer := 0;
+type int_array is array(3 downto 0) of integer;
+signal d: int_array;
+signal cd: integer := 0;
+
 
 begin
 
@@ -61,18 +65,48 @@ begin
     case activate_counter is
     when "00" =>
         anode <= "0111";
+        cd <= d(3);
     when "01" =>
         anode <= "1011";
+        cd <= d(2);
     when "10" =>
         anode <= "1101";
+        cd <= d(1);
     when "11" =>
         anode <= "1110";
+        cd <= d(0);
+    end case;
+end process;
+
+setSegments: process(cd)
+begin
+    case cd is
+    when 0 => segments <= "0000001";
+    when 1 => segments <= "1001111";
+    when 2 => segments <= "0010010";
+    when 3 => segments <= "0000110";
+    when 4 => segments <= "1001100";
+    when 5 => segments <= "0100100";
+    when 6 => segments <= "0100000";
+    when 7 => segments <= "0001111";
+    when 8 => segments <= "0000000";
+    when 9 => segments <= "0000100";
+    when others => segments <= "1111110";
     end case;
 end process;
 
 findInt1 : process(s1)
 begin
-    
+    integer1 <= to_integer(unsigned(s1));
+    d(3) <= integer1 / 10;
+    d(2) <= integer1 mod 10;
+end process;
+
+findInt2 : process(s2)
+begin
+    integer2 <= to_integer(unsigned(s2));
+    d(1) <= integer1 / 10;
+    d(0) <= integer1 mod 10;
 end process;
 
 end V1;
