@@ -40,8 +40,6 @@ end displayScore;
 architecture V1 of displayScore is
 
 signal activate_counter : unsigned(1 downto 0) := "00";
-signal integer1 : integer := 0;
-signal integer2 : integer := 0;
 type int_array is array(3 downto 0) of integer;
 signal d: int_array;
 signal cd: integer := 0;
@@ -75,6 +73,9 @@ begin
     when "11" =>
         anode <= "1110";
         cd <= d(0);
+    when others =>
+        anode <= "0111";
+        cd <= d(3);
     end case;
 end process;
 
@@ -96,17 +97,20 @@ begin
 end process;
 
 findInt1 : process(s1)
+    variable integer1 : integer := 0;
 begin
-    integer1 <= to_integer(unsigned(s1));
+    
+    integer1 := to_integer(unsigned(s1));
     d(3) <= integer1 / 10;
     d(2) <= integer1 mod 10;
 end process;
 
 findInt2 : process(s2)
+    variable integer2 : integer := 0;
 begin
-    integer2 <= to_integer(unsigned(s2));
-    d(1) <= integer1 / 10;
-    d(0) <= integer1 mod 10;
+    integer2 := to_integer(unsigned(s2));
+    d(1) <= integer2 / 10;
+    d(0) <= integer2 mod 10;
 end process;
 
 end V1;
