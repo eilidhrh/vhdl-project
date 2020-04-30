@@ -36,6 +36,9 @@ begin
     begin
         s1 <= "00000"; s2 <= "00000"; wait for 10ms;
         s1 <= "01011"; s2 <= "00111"; wait for 10ms;
+        s1 <= "11111"; s2 <= "11111"; wait for 10ms;
+        s1 <= "00101"; s2 <= "01000"; wait for 10ms;
+        s1 <= "10101"; s2 <= "01110"; wait for 10ms;
         wait;
     end process;
     
