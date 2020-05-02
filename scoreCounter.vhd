@@ -43,34 +43,59 @@ end scoreCounter;
 
 architecture V1 of scoreCounter is
 
+signal has1won : boolean := false;
+signal has2won : boolean := false;
+
 begin
+
     
-    count: process(reset, p1)
+    --w1 <= '0';
+    --w2 <= '0';
+    --s1 <= "00000";
+    --s2 <= "00000";
+    
+    count1: process(reset, p1)
     subtype bit5 is integer range 0 to 31;
     variable intS1 : bit5 := 0;
-    variable intS2 : bit5 := 0;
-    
+
     begin
         if reset = '1' then
             intS1 := 0;
             w1 <= '0';
-        elsif rising_edge(p1) then
-            if intS1 = 20 and intS2 < 21 then
+            has1won <= false;
+        elsif p1 = '1' then
+            if intS1 = 20 and has2won = false then
                 intS1 := intS1 + 1;
                 w1 <= '1';
-            elsif intS1 < 20 and intS2 < 21 then
+                has1won <= true;
+            elsif intS1 < 20 then
                 intS1 := intS1 + 1;
-            end if;
-        elsif rising_edge(p2) then
-            if intS2 = 20 and intS1 < 21 then
-                intS2 := intS2 + 1;
-                w2 <= '1';
-            elsif intS2 < 20 and intS1 < 21 then
-                intS2 := intS2 + 1;
             end if;
         end if;
         
         s1 <= std_logic_vector(to_unsigned(intS1, 5));
+        
+    end process;
+    
+    count: process(reset, p2)
+    subtype bit5 is integer range 0 to 31;
+    variable intS2 : bit5 := 0;
+    
+    begin
+        if reset = '1' then
+            intS2 := 0;
+            w2 <= '0';
+            has2won <= false;
+        elsif p2 = '1' then
+            if intS2 = 20 and has1won = false then
+                intS2 := intS2 + 1;
+                w2 <= '1';
+                has2won <= true;
+            elsif intS2 < 20 then
+                intS2 := intS2 + 1;
+            end if;
+        end if;
+        
         s2 <= std_logic_vector(to_unsigned(intS2, 5));
         
     end process;
