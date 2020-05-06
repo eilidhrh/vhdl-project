@@ -39,7 +39,7 @@ end process;
 --Every time the activate_counter changes will activate the correct display unit
 --Will also change the current digit to the correct digit from d
 --This depends on which display unit is being activated
-display: process(activate_counter)
+setAnode: process(activate_counter)
 begin
     case activate_counter is
     when "00" =>

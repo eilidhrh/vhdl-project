@@ -96,6 +96,7 @@ begin
             end if;
         else
             gameOver <= false;
+            count := 0;
         end if;
     end process;
        
