@@ -20,7 +20,7 @@ architecture V1 of scoreCounter is
 
 
 --Initialise variables
---Keeps track of who has won and when the game is being reset after someone has one
+--Keeps track of who has won and when the game is being reset after someone has won
 signal has1won : boolean := false;
 signal has2won : boolean := false;
 signal gameOver : boolean := false;
