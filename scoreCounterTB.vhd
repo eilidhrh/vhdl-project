@@ -25,7 +25,7 @@ begin
     
     clock : process is
     begin
-        while(now < 9000ms) loop
+        while(now < 12000ms) loop
             clk <= '1'; wait for 0.5ms;
             clk <= '0'; wait for 0.5ms;
         end loop;
@@ -34,24 +34,62 @@ begin
     
     buttons: process is
     begin
+        --initialises score
         p1 <= '0'; p2 <='0'; reset <='0'; wait for 10ms;
         
+        --adds a couple points to each score
         p1 <= '1'; wait for 10ms;
         p2 <= '1'; wait for 10ms;
-        p2 <= '0'; wait for 10ms;
-        reset <= '1'; wait for 10ms;
+        p1<='0'; p2 <= '0'; wait for 10ms;
+        p1 <= '1'; wait for 10ms;
         p1 <= '0'; wait for 10ms;
-        reset <= '0'; wait for 10ms;
+        p2 <= '1'; wait for 10ms;
+        p2 <= '0'; wait for 10ms;
         
-        for i in 0 to 20 loop
+        --resets while p1 is high then p1 goes low
+        p1 <='1'; wait for 10ms;
+        reset <= '1'; wait for 10ms;
+        reset <= '0'; wait for 10ms;
+        p1 <= '0'; wait for 10ms;
+        
+        --makes score 20:20
+        for i in 0 to 19 loop
             p1 <= '1'; wait for 10ms;
             p1 <= '0'; wait for 10ms;
             p2 <= '1'; wait for 10ms;
             p2 <= '0'; wait for 10ms;
         end loop;
         
+        --makes player 1 win
         p1 <= '1'; wait for 10ms;
+        p1 <= '0'; wait for 1000ms;
         
+        --resets after 1s
+        reset <= '1'; wait for 10ms;
+        reset <= '0'; wait for 10ms;
+        
+        --makes score 20:20
+        for i in 0 to 19 loop
+            p1 <= '1'; wait for 10ms;
+            p1 <= '0'; wait for 5ms;
+            p2 <= '1'; wait for 5ms;
+            p2 <= '0'; wait for 10ms;
+        end loop;
+        
+        --makes player 2 win
+        p2 <= '1'; wait for 10ms;
+        p2 <= '0'; wait for 10ms;
+        
+        --simulates buttons being pressed
+        --score should stay the same
+        for i in 0 to 10 loop
+            p1 <= '1'; wait for 10ms;
+            p1 <= '0'; wait for 10ms;
+            p2 <= '1'; wait for 10ms;
+            p2 <= '0'; wait for 10ms;
+        end loop;
+        
+        --waits - score should reset after 5 seconds
         
         wait;
     end process;

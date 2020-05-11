@@ -37,19 +37,23 @@ begin
     begin
         if reset = '1' or gameOver = true then
             intS1 := 0;
-            w1 <= '0';
             has1won <= false;
         elsif p1 = '1' then
             if intS1 = 20 and has2won = false then
                 intS1 := intS1 + 1;
-                w1 <= '1';
                 has1won <= true;
             elsif intS1 < 20 then
                 intS1 := intS1 + 1;
+                has1won <= false;
             end if;
         end if;
         
         s1 <= std_logic_vector(to_unsigned(intS1, 5));
+        if has1won = true then
+            w1 <= '1';
+        else
+            w1 <= '0';
+        end if;
         
     end process;
     
@@ -63,19 +67,23 @@ begin
     begin
         if reset = '1' or gameOver = true then
             intS2 := 0;
-            w2 <= '0';
             has2won <= false;
         elsif p2 = '1' then
             if intS2 = 20 and has1won = false then
                 intS2 := intS2 + 1;
-                w2 <= '1';
                 has2won <= true;
             elsif intS2 < 20 then
                 intS2 := intS2 + 1;
+                has2won <= false;
             end if;
         end if;
         
         s2 <= std_logic_vector(to_unsigned(intS2, 5));
+        if has2won = true then
+            w2 <= '1';
+        else
+            w2 <= '0';
+        end if;
         
     end process;
     

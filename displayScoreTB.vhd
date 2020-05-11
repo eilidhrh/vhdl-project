@@ -41,7 +41,6 @@ begin
         s1 <= "10101"; s2 <= "01110"; wait for 10ms; --21:14
         s1 <= "11010"; s2 <= "11101"; wait for 10ms; --26:29
         s1 <= "UUUUU"; s2 <= "XXXXX"; wait for 10ms; --"--:--"
-       
         wait;
     end process;
     
