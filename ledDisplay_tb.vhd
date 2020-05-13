@@ -68,9 +68,9 @@ stimuli: process
 	begin
 	--test 1
 	
---	     w1<='0'; w2<='0'; res<='0'; wait for 82 ns;       
---    	 w1<='1'; w2<='0'; wait for 4000 ns;                   --check 1st pattern continues while w1 is 1
---    	 w1<='0'; w2<='0'; wait for 450 ns;
+	     w1<='0'; w2<='0'; res<='0'; wait for 82 ns;       
+    	 w1<='1'; w2<='0'; wait for 4000 ns;                   --check 1st pattern continues while w1 is 1
+    	 w1<='0'; w2<='0'; wait for 450 ns;
 	 
 	 --test 2
 	 
