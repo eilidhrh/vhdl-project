@@ -69,7 +69,7 @@ begin
         reset <= '0'; wait for 10ms;
         
         --makes score 20:20
-        for i in 0 to 19 loop
+        for i in 0 to 22 loop
             p1 <= '1'; wait for 10ms;
             p1 <= '0'; wait for 5ms;
             p2 <= '1'; wait for 5ms;
@@ -77,6 +77,8 @@ begin
         end loop;
         
         --makes player 2 win
+        p2 <= '1'; wait for 10ms;
+        p2 <= '0'; wait for 10ms;
         p2 <= '1'; wait for 10ms;
         p2 <= '0'; wait for 10ms;
         
@@ -87,6 +89,20 @@ begin
             p1 <= '0'; wait for 10ms;
             p2 <= '1'; wait for 10ms;
             p2 <= '0'; wait for 10ms;
+        end loop;
+        
+        reset <= '1'; wait for 10ms;
+        reset <= '0'; wait for 10ms;
+        
+        for i in 0 to 22 loop
+            p1 <= '1'; wait for 10ms;
+            p1 <= '0'; wait for 5ms;
+            p2 <= '1'; wait for 5ms;
+            p2 <= '0'; wait for 10ms;
+            p2 <= '1'; wait for 5ms;
+            p2 <= '0'; wait for 10ms;
+            p1 <= '1'; wait for 10ms;
+            p1 <= '0'; wait for 5ms;
         end loop;
         
         --waits - score should reset after 5 seconds

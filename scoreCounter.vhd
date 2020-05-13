@@ -21,9 +21,13 @@ architecture V1 of scoreCounter is
 
 --Initialise variables
 --Keeps track of who has won and when the game is being reset after someone has won
-signal has1won : boolean := false;
-signal has2won : boolean := false;
+signal has1won : std_logic := '0';
+signal has2won : std_logic := '0';
 signal gameOver : boolean := false;
+
+subtype bit5 is integer range 0 to 31;
+signal intS1 : bit5 := 0;
+signal intS2 : bit5 := 0;
 
 begin
     
@@ -31,60 +35,64 @@ begin
     --It also resets it when someone wins or the reset button is pressed
     --It also changes w1 to high when player 1 wins, which will alert the LED display entity
     count1: process(reset, p1, gameOver)
-    subtype bit5 is integer range 0 to 31;
-    variable intS1 : bit5 := 0;
-
-    begin
+     variable margin : integer := 0;
+     begin
         if reset = '1' or gameOver = true then
-            intS1 := 0;
-            has1won <= false;
-        elsif p1 = '1' then
-            if intS1 = 20 and has2won = false then
-                intS1 := intS1 + 1;
-                has1won <= true;
-            elsif intS1 < 20 then
-                intS1 := intS1 + 1;
-                has1won <= false;
-            end if;
-        end if;
-        
-        s1 <= std_logic_vector(to_unsigned(intS1, 5));
-        if has1won = true then
-            w1 <= '1';
-        else
-            w1 <= '0';
-        end if;
+            intS1 <= 0;
+            has1won <= '0';
+        elsif p1 = '1' and has1won = '0' and has2won = '0' then
+             margin := intS1 - intS2;
+             if intS1 >= 20 and (margin = 1) then
+                    intS1 <= intS1 + 1;
+                    has1won <= '1';
+             elsif intS1 >= 29 then
+                    intS1 <= intS1 + 1;
+                    has1won <= '1';
+             else
+                    intS1 <= intS1 + 1;
+                    has1won <= '0';
+              end if;
+          end if;
         
     end process;
+    
+    update1: process(intS1, has1won)
+    
+    begin
+        s1 <= std_logic_vector(to_unsigned(intS1, 5));
+        w1 <= has1won;
+    end process;
+
     
     --This counts the player 2 score
     --It also resets it when someone wins or the reset button is pressed
     --It also changes w2 to high when player 2 wins, which will alert the LED display entity
     count2: process(reset, p2, gameOver)
-    subtype bit5 is integer range 0 to 31;
-    variable intS2 : bit5 := 0;
-    
+    variable margin : integer := 0;
     begin
         if reset = '1' or gameOver = true then
-            intS2 := 0;
-            has2won <= false;
-        elsif p2 = '1' then
-            if intS2 = 20 and has1won = false then
-                intS2 := intS2 + 1;
-                has2won <= true;
-            elsif intS2 < 20 then
-                intS2 := intS2 + 1;
-                has2won <= false;
-            end if;
-        end if;
-        
+            intS2 <= 0;
+            has2won <= '0';
+        elsif p2 = '1' and has1won = '0' and has2won = '0' then
+             margin := intS2 - intS1;
+             if intS2 >= 20 and (margin = 1) then
+                    intS2 <= intS2 + 1;
+                    has2won <= '1';
+             elsif intS2 >= 29 then
+                    intS2 <= intS2 + 1;
+                    has2won <= '1';
+             else
+                    intS2 <= intS2 + 1;
+                    has2won <= '0';
+              end if;
+          end if;
+
+    end process;
+    
+    update2: process(intS2, has2won)
+    begin
         s2 <= std_logic_vector(to_unsigned(intS2, 5));
-        if has2won = true then
-            w2 <= '1';
-        else
-            w2 <= '0';
-        end if;
-        
+        w2 <= has2won;
     end process;
     
     
@@ -93,7 +101,7 @@ begin
     gameIsOver : process(has1won, has2won, clk)
     variable count : integer := 0;
     begin
-        if has1won = true or has2won = true then
+        if has1won = '1' or has2won = '1' then
             if rising_edge(clk) then
                 if count < 5000 then
                     count := count + 1;
