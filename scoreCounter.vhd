@@ -42,7 +42,7 @@ begin
             has1won <= '0';
         elsif p1 = '1' and has1won = '0' and has2won = '0' then
              margin := intS1 - intS2;
-             if intS1 >= 20 and (margin = 1) then
+             if intS1 >= 20 and (margin >= 1) then
                     intS1 <= intS1 + 1;
                     has1won <= '1';
              elsif intS1 >= 29 then
@@ -75,7 +75,7 @@ begin
             has2won <= '0';
         elsif p2 = '1' and has1won = '0' and has2won = '0' then
              margin := intS2 - intS1;
-             if intS2 >= 20 and (margin = 1) then
+             if intS2 >= 20 and (margin >= 1) then
                     intS2 <= intS2 + 1;
                     has2won <= '1';
              elsif intS2 >= 29 then
