@@ -54,7 +54,7 @@ signal LEDs : std_logic_vector(15 downto 0);
 begin
 clockgen : process
 	begin
-		while now <= 3000ns loop
+		while now <= 10000 ns loop
 			clk <= '1';
 			wait for 5 ns;
 			clk <= '0';
@@ -65,56 +65,187 @@ clockgen : process
 
 stimuli: process
 	begin
-	p1btn<='0'; p2btn<='0'; reset<='0'; wait for 2 ns;
-	p1btn<='1'; p2btn<='0'; reset<='0'; wait for 5 ns;
-	p1btn<='0'; p2btn<='0'; reset<='0'; wait for 5 ns;
-	p1btn<='1'; p2btn<='0'; reset<='0'; wait for 5 ns;
-	p1btn<='0'; p2btn<='0'; reset<='0'; wait for 5 ns;
-	p1btn<='1'; p2btn<='0'; reset<='0'; wait for 5 ns;
-	p1btn<='0'; p2btn<='0'; reset<='0'; wait for 5 ns;
-	p1btn<='1'; p2btn<='0'; reset<='0'; wait for 5 ns;
-	p1btn<='0'; p2btn<='0'; reset<='0'; wait for 5 ns;
-	p1btn<='1'; p2btn<='0'; reset<='0'; wait for 5 ns;
-	p1btn<='0'; p2btn<='0'; reset<='0'; wait for 5 ns;
-	p1btn<='1'; p2btn<='0'; reset<='0'; wait for 5 ns;
-	p1btn<='0'; p2btn<='0'; reset<='0'; wait for 5 ns;
-	p1btn<='1'; p2btn<='0'; reset<='0'; wait for 5 ns;
-	p1btn<='0'; p2btn<='0'; reset<='0'; wait for 5 ns;
-	p1btn<='1'; p2btn<='0'; reset<='0'; wait for 5 ns;
-	p1btn<='0'; p2btn<='0'; reset<='0'; wait for 5 ns;
-	p1btn<='1'; p2btn<='0'; reset<='0'; wait for 5 ns;
-	p1btn<='0'; p2btn<='0'; reset<='0'; wait for 5 ns;
-	p1btn<='1'; p2btn<='0'; reset<='0'; wait for 5 ns;
-	p1btn<='0'; p2btn<='0'; reset<='0'; wait for 5 ns;
-	p1btn<='1'; p2btn<='0'; reset<='0'; wait for 5 ns;
-	p1btn<='0'; p2btn<='0'; reset<='0'; wait for 5 ns;
-	p1btn<='1'; p2btn<='0'; reset<='0'; wait for 5 ns;
-	p1btn<='0'; p2btn<='0'; reset<='0'; wait for 5 ns;
-	p1btn<='1'; p2btn<='0'; reset<='0'; wait for 5 ns;
-	p1btn<='0'; p2btn<='0'; reset<='0'; wait for 5 ns;
-	p1btn<='1'; p2btn<='0'; reset<='0'; wait for 5 ns;
-	p1btn<='0'; p2btn<='0'; reset<='0'; wait for 5 ns;
-	p1btn<='1'; p2btn<='0'; reset<='0'; wait for 5 ns;
-	p1btn<='0'; p2btn<='0'; reset<='0'; wait for 5 ns;
-	p1btn<='1'; p2btn<='0'; reset<='0'; wait for 5 ns;
-	p1btn<='0'; p2btn<='0'; reset<='0'; wait for 5 ns;
-	p1btn<='1'; p2btn<='0'; reset<='0'; wait for 5 ns;
-	p1btn<='0'; p2btn<='0'; reset<='0'; wait for 5 ns;
-	p1btn<='1'; p2btn<='0'; reset<='0'; wait for 5 ns;
-	p1btn<='0'; p2btn<='0'; reset<='0'; wait for 5 ns;
-	p1btn<='1'; p2btn<='0'; reset<='0'; wait for 5 ns;
-	p1btn<='0'; p2btn<='0'; reset<='0'; wait for 5 ns;
-	p1btn<='1'; p2btn<='0'; reset<='0'; wait for 5 ns;
-	p1btn<='0'; p2btn<='0'; reset<='0'; wait for 5 ns;
-	p1btn<='1'; p2btn<='0'; reset<='0'; wait for 5 ns;
-	p1btn<='0'; p2btn<='0'; reset<='0'; wait for 5 ns;
-	p1btn<='1'; p2btn<='0'; reset<='0'; wait for 5 ns;
-	p1btn<='0'; p2btn<='0'; reset<='0'; wait for 5 ns;
-	p1btn<='1'; p2btn<='0'; reset<='0'; wait for 5 ns;
-	p1btn<='0'; p2btn<='0'; reset<='0'; wait for 5 ns;
+	 p1btn <= '0'; p2btn <= '0'; reset <= '0'; wait for 10ns;    --use this for each test
+	 
+	--expand me for tests
+	--test 1 - buttons only
+	  --initialises score
+       
+        
+--        --adds a couple points to each score
+--        p1btn <= '1'; wait for 10ns;
+--        p2btn <= '1'; wait for 10ns;
+--        p1btn<= '0'; p2btn <= '0'; wait for 10ns;
+--        p1btn <= '1'; wait for 10ns;
+--        p1btn <= '0'; wait for 10ns;
+--        p2btn <= '1'; wait for 10ns;
+--        p2btn <= '0'; wait for 10ns;
+        
+--        p1btn <= '1'; p2btn <= '1'; wait for 10 ns;      --simultaneous push
+--        p1btn <= '0'; p2btn <= '0'; wait for 10 ns;      --simultaneus release
+--        p1btn <= '1'; p2btn <= '1'; wait for 10 ns;      
+--        p1btn <= '0'; p2btn <= '1'; wait for 10 ns;      --release p1 first
+--        p1btn <= '0'; p2btn <= '0'; wait for 10 ns;
+--        p1btn <= '1'; p2btn <= '1'; wait for 10 ns;
+--        p1btn <= '1'; p2btn <= '0'; wait for 10 ns;      --release p2 first
+--        p1btn <= '0'; p2btn <= '0'; wait for 10 ns;
+
+----------------------------------------------------------------------------	
 	
-	reset<='1'; wait for 30 ns;
-	reset<='0'; wait for 10 ns;
+        
+  	
+	--test 2 - testing reset
+--	  --initialises score
+--        p1btn <= '0'; p2btn <='0'; reset <='0'; wait for 10ns; 
+    
+--        p1btn <= '1'; reset <= '1'; wait for 10ns;        --reset preventing p1 or p2
+--        p2btn <= '1'; wait for 10ns;
+--        p1btn <= '0'; p2btn <= '0'; wait for 40ns;        --wait full cycle of anode
+        
+--        p1btn <= '1'; p2btn <= '1'; reset <= '0'; wait for 10ns;
+--        p1btn <= '0'; p2btn <= '0'; reset <= '0'; wait for 10ns;
+--        p1btn <= '1'; p2btn <= '1'; reset <= '0'; wait for 10ns;
+--        p1btn <= '0'; p2btn <= '0'; reset <= '0'; wait for 10ns;
+--        p1btn <= '1'; p2btn <= '1'; reset <= '0'; wait for 58 ns;            --add a few points, wait full cycle and reset right before clock edge
+--        p1btn <= '0'; p2btn <= '0'; reset <= '1'; wait for 10ns;
+--        reset <= '0'; 
+----------------------------------------------------------------------------
+
+
+--------TEST 3 - win 1, reset, win 1 again, wait full 5 seconds------------------
+        
+       --initialises score
+--          p1btn <= '0'; p2btn <= '0'; reset <= '0'; wait for 10ns;
+          
+--          for i in 0 to 19 loop
+--            p1btn <= '1'; wait for 5ns;
+--            p1btn <= '0'; wait for 10ns;
+--            p2btn <= '1'; wait for 10ns;
+--            p2btn <= '0'; wait for 10ns;
+--          end loop;
+          
+--            p1btn <= '1'; wait for 10 ns;
+--            p1btn <= '0'; wait for 125 ns;
+--            reset <= '1'; wait for 20 ns;
+--            reset <= '0'; wait for 80 ns;
+            
+--           for i in 0 to 19 loop
+--            p1btn <= '1'; wait for 10ns;
+--            p1btn <= '0'; wait for 10ns;
+--            p2btn <= '1'; wait for 10ns;
+--            p2btn <= '0'; wait for 10ns;
+--          end loop;
+        
+--            p1btn <= '1'; wait for 10 ns;
+--            p1btn <= '0'; wait for 10 ns;
+
+----------------------------------------------------------------------------        
+
+          
+--          for i in 0 to 19 loop
+--            p1btn <= '1'; wait for 5ns;
+--            p1btn <= '0'; wait for 10ns;
+--            p2btn <= '1'; wait for 10ns;
+--            p2btn <= '0'; wait for 10ns;
+--          end loop;
+          
+--            p1btn <= '1'; wait for 10 ns;
+--            p1btn <= '0'; wait for 125 ns;
+--            reset <= '1'; wait for 20 ns;
+--            reset <= '0'; wait for 80 ns;
+            
+--           for i in 0 to 19 loop
+--            p1btn <= '1'; wait for 10ns;
+--            p1btn <= '0'; wait for 10ns;
+--            p2btn <= '1'; wait for 10ns;
+--            p2btn <= '0'; wait for 10ns;
+--          end loop;
+        
+--            p1btn <= '1'; wait for 10 ns;
+--            p1btn <= '0'; wait for 10 ns;
+----------------------------------------------------------------------------
+
+
+----------------TEST 4 - first p1 wins then p2
+
+--          for i in 0 to 19 loop
+--            p1btn <= '1'; wait for 5ns;
+--            p1btn <= '0'; wait for 10ns;
+--            p2btn <= '1'; wait for 10ns;
+--            p2btn <= '0'; wait for 10ns;
+--          end loop;
+          
+--            p1btn <= '1'; wait for 10 ns;
+--            p1btn <= '0'; wait for 125 ns;
+--            reset <= '1'; wait for 20 ns;
+--            reset <= '0'; wait for 80 ns;
+            
+--           for i in 0 to 19 loop
+--            p1btn <= '1'; wait for 10ns;
+--            p1btn <= '0'; wait for 10ns;
+--            p2btn <= '1'; wait for 10ns;
+--            p2btn <= '0'; wait for 10ns;
+--          end loop;
+        
+--            p2btn <= '1'; wait for 10 ns;
+--            p2btn <= '0'; wait for 10 ns;
+
+
+
+
+
+--------------TEST 5 - repeat test 4 without reset
+
+--          for i in 0 to 19 loop
+--            p1btn <= '1'; wait for 5ns;
+--            p1btn <= '0'; wait for 10ns;
+--            p2btn <= '1'; wait for 10ns;
+--            p2btn <= '0'; wait for 10ns;
+--          end loop;
+          
+--            p1btn <= '1'; wait for 10 ns;
+--            p1btn <= '0'; wait for 500 ns;
+      
+--           for i in 0 to 19 loop
+--            p1btn <= '1'; wait for 10ns;
+--            p1btn <= '0'; wait for 10ns;
+--            p2btn <= '1'; wait for 10ns;
+--            p2btn <= '0'; wait for 10ns;
+--          end loop;
+        
+--            p2btn <= '1'; wait for 10 ns;
+--            p2btn <= '0'; wait for 10 ns;
+            
+            
+ --------------TEST 6 - check score isn't being added during w1
+
+--          for i in 0 to 19 loop
+--            p1btn <= '1'; wait for 5ns;
+--            p1btn <= '0'; wait for 10ns;
+--            p2btn <= '1'; wait for 10ns;
+--            p2btn <= '0'; wait for 10ns;
+--          end loop;
+          
+--           for i in 0 to 26 loop
+--            p1btn <= '1'; wait for 5ns;
+--            p1btn <= '0'; wait for 5ns;
+--            p2btn <= '1'; wait for 5ns;
+--            p2btn <= '0'; wait for 5ns;
+--          end loop;
+            
+       
+--         -- wait for 400 ns;  -- waiting for led sequence to complete
+          
+--          for i in 0 to 19 loop
+--            p1btn <= '1'; wait for 10ns;
+--            p1btn <= '0'; wait for 10ns;
+--            p2btn <= '1'; wait for 10ns;
+--            p2btn <= '0'; wait for 10ns;
+--         end loop;
+        
+--            p2btn <= '1'; wait for 10 ns;
+--            p2btn <= '0'; wait for 10 ns;
+
 	
 	
 	wait;
