@@ -52,23 +52,25 @@ begin
         reset <= '0'; wait for 10ms;
         p1 <= '0'; wait for 10ms;
         
-        --makes score 20:20
-        for i in 0 to 19 loop
+        --makes score 20:19
+        for i in 0 to 18 loop
             p1 <= '1'; wait for 10ms;
             p1 <= '0'; wait for 10ms;
             p2 <= '1'; wait for 10ms;
             p2 <= '0'; wait for 10ms;
         end loop;
         
-        --makes player 1 win
+        --makes score 21:19
+        --player 1 wins
         p1 <= '1'; wait for 10ms;
-        p1 <= '0'; wait for 1000ms;
+        p1 <= '0'; wait for 800ms;
         
         --resets after 1s
         reset <= '1'; wait for 10ms;
         reset <= '0'; wait for 10ms;
         
-        --makes score 20:20
+        --makes score 23:23
+        --neither player will have a two point margin
         for i in 0 to 22 loop
             p1 <= '1'; wait for 10ms;
             p1 <= '0'; wait for 5ms;
@@ -94,14 +96,15 @@ begin
         reset <= '1'; wait for 10ms;
         reset <= '0'; wait for 10ms;
         
-        for i in 0 to 22 loop
+        
+        for i in 0 to 15 loop
             p1 <= '1'; wait for 10ms;
             p1 <= '0'; wait for 5ms;
             p2 <= '1'; wait for 5ms;
             p2 <= '0'; wait for 10ms;
-            p2 <= '1'; wait for 5ms;
+            p2 <= '1'; wait for 10ms;
             p2 <= '0'; wait for 10ms;
-            p1 <= '1'; wait for 10ms;
+            p1 <= '1'; wait for 5ms;
             p1 <= '0'; wait for 5ms;
         end loop;
         
