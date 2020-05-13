@@ -75,17 +75,13 @@ end  component;
 
 signal w1sig, w2sig, resetsig, clksig: std_logic;
 signal s1sig, s2sig : std_logic_vector(4 downto 0);
-signal LEDsig : std_logic_vector(15 downto 0);
-signal anodesig : std_logic_vector(3 downto 0);
-signal segmentsig : std_logic_vector(6 downto 0);
 
 begin
 
-LEDs <= LEDsig;
 
 ScoreModule: scoreCounter port map(p1=>p1btn, p2=>p2btn, reset=>reset, clk=>clk, w1=>w1sig, w2=>w2sig, s1=>s1sig, s2=>s2sig);
 
-LEDModule: ledDisplay port map(w1=>w1sig, w2=>w2sig, clk_in=>clk, res=>reset, LEDs=>LEDsig);
+LEDModule: ledDisplay port map(w1=>w1sig, w2=>w2sig, clk_in=>clk, res=>reset, LEDs=>LEDs);
 
 sevenSegModule: displayScore port map(s1=>s1sig, s2=>s2sig, clk=>clk, anode=>anode, segments=>segments);
 

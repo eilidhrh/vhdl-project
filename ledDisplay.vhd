@@ -41,7 +41,7 @@ end ledDisplay;
 
 architecture V1 of ledDisplay is
 
-constant max_count : integer := 3;           -- for simulation only (easier to check output!)
+constant max_count : integer := 1;           -- for simulation only (easier to check output!)
 --constant max_count : integer := 125;         -- for real world application assuming 1 kHz clock, divide to 8 Hz to see output pattern
 
 signal vclk : std_logic; --slower clock to use for LED sequence so it is visible
@@ -58,7 +58,7 @@ begin
     
     if rising_edge(clk_in) then
     
-      if count < max_count-1 then     -- highest value count should reach is 6,249,999.
+      if count < max_count-1 then     
         count := count + 1;           -- increment counter
       else
         count := to_unsigned(0,7);      -- reset count to zero
@@ -72,7 +72,7 @@ begin
   end process;
   
 
-sequence_gen_w1: process(vclk, res) is
+sequence_gen_w1: process(vclk, res, w1, w2) is
     variable count : unsigned(2 downto 0) := "000";
     variable count_two : unsigned(2 downto 0) := "000";
     
@@ -108,10 +108,14 @@ sequence_gen_w1: process(vclk, res) is
    
           when 4 =>
             LEDs <= "1111111100000000";
-            count := to_unsigned(1, 3);       -- loops the pattern back around
-        
+            
+          when 5 =>
+            count := to_unsigned(1, 3);
+           --loops the pattern back around
+          
           when others =>
              LEDs <= (others => '1');   -- in case of unexpected input
+             
      end case;
     end if;
     
@@ -132,10 +136,14 @@ sequence_gen_w1: process(vclk, res) is
     
          when 4 =>
           LEDs <= "0000000011111111";
-          count_two := to_unsigned(1, 3);       -- loops the pattern back around
+                 
+         when 5 =>
+          count_two := to_unsigned(1, 3);
+          -- loops the pattern back around
     
         when others =>
          LEDs <= (others => '1');   -- in case of unexpected input
+         
       end case;
     end if;
 end process;
