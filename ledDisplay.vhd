@@ -1,4 +1,4 @@
-library IEEE;   
+library IEEE;     
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 
@@ -21,7 +21,7 @@ begin
 --  clk_divide : process (clk_in) is
   
 --  variable count : unsigned(6 downto 0):= to_unsigned(0,7);      -- 7 bits required to count up to 125
---  variable clk_proc : std_logic := '0';                          -- this is a clock internal to the process
+--  variable clk_proc : std_logic := '0';                          -- process clock
   
 --  begin
     
