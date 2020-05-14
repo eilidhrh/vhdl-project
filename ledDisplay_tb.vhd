@@ -44,7 +44,7 @@ stimuli: process
            
 	     w1<= '0'; w2<='0'; wait for 82 ns;        
 	     w1<= '1'; w2<='1'; wait for 300 ns;        --check w1 and w2 does nothing
-	     w1<= '1'; w2<='1'; wait for 300 ns;        --should still do nothing with reset up
+	     w1<= '1'; w2<='1'; wait for 300 ns;        
 	     w1<= '1'; w2<='0'; wait for 300 ns;        --w1 should start pattern
 	     w1<= '1'; w2<='1'; wait for 300 ns;     
 	     w1<= '0'; w2<='1'; wait for 300 ns;        --w2 should start pattern   
