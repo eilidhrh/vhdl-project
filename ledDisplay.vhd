@@ -27,7 +27,7 @@ begin
     
 --    if rising_edge(clk_in) then
     
---      if count < max_count-1 then     -- highest value count should reach is 6,249,999.
+--      if count < max_count-1 then     
 --        count := count + 1;           -- increment counter
 --      else
 --        count := to_unsigned(0,7);      -- reset count to zero
