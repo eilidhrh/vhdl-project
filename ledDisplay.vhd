@@ -1,4 +1,4 @@
-library IEEE;
+library IEEE;   
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 
@@ -11,9 +11,34 @@ entity ledDisplay is
 end ledDisplay;
 
    architecture V1 of ledDisplay is
+   
+--constant max_count : integer := 125;         -- for real world application assuming 1 kHz clock, divide to 8 Hz to see output pattern
+--signal vclk : std_logic; --slower clock to use for LED sequence so it is visible
 
 begin
-
+-- clock divider process        
+  ---------------------------------
+--  clk_divide : process (clk_in) is
+  
+--  variable count : unsigned(6 downto 0):= to_unsigned(0,7);      -- 7 bits required to count up to 125
+--  variable clk_proc : std_logic := '0';                          -- this is a clock internal to the process
+  
+--  begin
+    
+--    if rising_edge(clk_in) then
+    
+--      if count < max_count-1 then     -- highest value count should reach is 6,249,999.
+--        count := count + 1;           -- increment counter
+--      else
+--        count := to_unsigned(0,7);      -- reset count to zero
+--        clk_proc := not clk_proc;       -- invert clock variable every time counter resets
+--      end if;
+      
+--     vclk <= clk_proc;                 -- assign clock variable to internal clock signal
+      
+--    end if;
+    
+--  end process;                    --if needed to use, replace clk_in with vclk in the rest of the file
 
   
 
