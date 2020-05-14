@@ -1,14 +1,6 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
---use IEEE.NUMERIC_STD.ALL;
-
--- Uncomment the following library declaration if instantiating
--- any Xilinx leaf cells in this code.
---library UNISIM;
---use UNISIM.VComponents.all;
 
 entity ledDisplay_tb is
 --  Port ( );
@@ -30,7 +22,7 @@ begin
 
 clockgen : process
 	begin
-		while now <= 5000ns loop
+		while now <= 5000ns loop          --using faster clock due to hardware limitations
 			CLK_TB <= '1';
 			wait for 5 ns;
 			CLK_TB <= '0';
@@ -41,22 +33,22 @@ clockgen : process
 
 stimuli: process                                        
 	begin
-	--test 1
+
 	
 	     w1<='0'; w2<='0'; wait for 82 ns;       
-    	 w1<='1'; w2<='0'; wait for 2000 ns;                   --check 1st pattern continues while w1 is 1
+    	 w1<='1'; w2<='0'; wait for 400 ns;                   --check 1st pattern continues while w1 is 1
          w1<='0'; w2<='0'; wait for 200 ns;                    --check 2nd pattern
-    	 w1<='0'; w2<='1'; wait for 10 ns;
+    	 w1<='0'; w2<='1'; wait for 400 ns;
 
-    --test 2   
+
            
---	     w1<= '0'; w2<='0'; wait for 82 ns;        
---	     w1<= '1'; w2<='1'; wait for 300 ns;        --check w1 and w2 does nothing
---	     w1<= '1'; w2<='1'; wait for 300 ns;        --should still do nothing with reset up
---	     w1<= '1'; w2<='0'; wait for 300 ns;        --w1 should start pattern
---	     w1<= '1'; w2<='1'; wait for 300 ns;     
---	     w1<= '0'; w2<='1'; wait for 300 ns;        --w2 should start pattern   
---                                                            --in final design the signals sending to w1/w2 would go low on reset
+	     w1<= '0'; w2<='0'; wait for 82 ns;        
+	     w1<= '1'; w2<='1'; wait for 300 ns;        --check w1 and w2 does nothing
+	     w1<= '1'; w2<='1'; wait for 300 ns;        --should still do nothing with reset up
+	     w1<= '1'; w2<='0'; wait for 300 ns;        --w1 should start pattern
+	     w1<= '1'; w2<='1'; wait for 300 ns;     
+	     w1<= '0'; w2<='1'; wait for 300 ns;        --w2 should start pattern   
+                                                            --in final design the signals sending to w1/w2 would go low on reset
                                                               
                                 
 	wait;                                                     
