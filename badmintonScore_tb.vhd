@@ -1,4 +1,4 @@
-library IEEE;
+library IEEE;  
 use IEEE.STD_LOGIC_1164.ALL;
 
 
@@ -26,7 +26,7 @@ signal LEDs : std_logic_vector(15 downto 0);
 begin
 clockgen : process
 	begin
-		while now <= 10000 ns loop
+		while now <= 10000 ns loop                --using faster clock due to hardware limitations
 			clk <= '1';
 			wait for 5 ns;
 			clk <= '0';
@@ -100,18 +100,18 @@ stimuli: process
  
 --        p1btn <= '1'; p2btn <= '1'; reset <= '0'; wait for 40ns;        -- wait full cycle of anode
         
---        for i in 0 to 25 loop                                           --run score up to 26:26 to check margin win condition             
+--        for i in 0 to 22 loop                                           --run score up to 26:26 to check margin win condition             
 --          p1btn <= '1'; wait for 10ns;  
 --          p1btn <= '0'; wait for 10ns;
 --          p2btn <= '1'; wait for 10ns;
 --          p2btn <= '0'; wait for 10ns;
 --        end loop;
         
---          p1btn <= '1'; wait for 10 ns;
---          p1btn <= '0'; wait for 60 ns;
---          p1btn <= '1'; wait for 10 ns;                                 --player 1 should win on 28:26
---          p1btn <= '0'; wait for 10 ns;
---                                                                uncomment either for p1 or p2
+----          p1btn <= '1'; wait for 10 ns;
+----          p1btn <= '0'; wait for 60 ns;
+----          p1btn <= '1'; wait for 10 ns;                                 --player 1 should win on 28:26
+----          p1btn <= '0'; wait for 10 ns;
+----                                                                uncomment either for p1 or p2
 --          p2btn <= '1'; wait for 10 ns;
 --          p2btn <= '0'; wait for 60 ns;                               --player 2 should win on 26:28
 --          p2btn <= '1'; wait for 10 ns;                                 
@@ -137,12 +137,12 @@ stimuli: process
 --            reset <= '1'; wait for 20 ns;           -- reset    
 --            reset <= '0'; wait for 80 ns;
 
---            p2btn <= '1'; wait for 10 ns;
---            p2btn <= '0'; wait for 10 ns;
---            p2btn <= '1'; wait for 10 ns;          -- same code if p2 win
---            p2btn <= '0'; wait for 125 ns;
---            reset <= '1'; wait for 20 ns;           -- reset    
---            reset <= '0'; wait for 80 ns;
+----            p2btn <= '1'; wait for 10 ns;
+----            p2btn <= '0'; wait for 10 ns;
+----            p2btn <= '1'; wait for 10 ns;          -- same code if p2 win
+----            p2btn <= '0'; wait for 125 ns;
+----            reset <= '1'; wait for 20 ns;           -- reset    
+----            reset <= '0'; wait for 80 ns;
 
 
 
